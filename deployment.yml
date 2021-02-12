@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: feed-app
+  labels:
+    service: feed-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: feed-app
+  template:
+    metadata:
+      labels:
+        service: feed-app
+    spec:
+      containers:
+      - name: microservice-feed
+        image: sjulian/microservice-feed:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "500m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 8080
+      restartPolicy: Always
