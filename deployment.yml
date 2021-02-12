@@ -18,6 +18,13 @@ spec:
       - name: microservice-feed
         image: sjulian/microservice-feed:latest
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "500m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
         ports:
         - containerPort: 8080
       restartPolicy: Always
